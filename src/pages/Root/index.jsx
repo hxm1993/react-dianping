@@ -5,12 +5,15 @@ import { connect } from 'react-redux'
 import * as userInfoActionsFromOtherFile from '../../redux/actions/userInfo' 
 import LocalStore from "../../util/localStore"
 import Home from "../Home"
+import City from "../City"
 import {CITYNAME} from "../../config/localStorageKey"
 class Root extends Component {
 	render() {
 		return(
 			<div>
-				<Route path="/home" component={Home}></Route>
+                <Route path="/home" component={Home}></Route>
+				<Route path="/city" component={City}></Route>
+
 			</div>
 		)
 	}

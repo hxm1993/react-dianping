@@ -36,7 +36,7 @@ router.get('/api/homelist/:city/:page', async (ctx, next) => {
     console.log('当前城市：' + paramsCity)
     console.log('当前页数：' + paramsPage)
 
-    this.body = homeListData
+     ctx.response.body = homeListData;
 });
 app.use(router.routes());
 // 在端口3000监听:

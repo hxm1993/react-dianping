@@ -13,7 +13,8 @@ class Ad extends Component {
 	render() {
 		return(
 			<div className="homeAds">
-				<ul>
+				<div className="title">超值特惠</div>
+				<div className="clear-fix ad-box">
 					{this.state.ads && this.state.ads.map((item, index) => {
                         return (
 							<div key={index} className="ad-item float-left">
@@ -22,9 +23,8 @@ class Ad extends Component {
 	                            </a>
 	                        </div>
                         )
-                        
                     })}
-				</ul>
+				</div>
 			</div>
 		)
 	}

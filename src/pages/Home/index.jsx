@@ -2,9 +2,11 @@ import React, {Component} from "react";
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as userInfoActionsFromOtherFile from '../../redux/actions/userInfo' 
-import Header from "../../components/Header";
+import Header from "../../components/HomeHeader";
 import Category from "../../components/Category";
 import Ad from "./subPages/Ad"
+import List from "./subPages/List"
+require("./index.less")
 class Home extends Component {
 	render() {
 		console.log(this.props)
@@ -13,7 +15,7 @@ class Home extends Component {
 				<Header cityName={this.props.userInfo.cityName} />
 				<Category />
 				<Ad />
-				<img src="https://images2015.cnblogs.com/blog/138012/201610/138012-20161016191639092-2000037796.png" alt=""/>
+				<List cityName={this.props.userInfo.cityName}/>
 			</div>
 		)
 	}
