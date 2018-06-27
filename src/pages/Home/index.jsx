@@ -9,7 +9,6 @@ import List from "./subPages/List"
 require("./index.less")
 class Home extends Component {
 	render() {
-		console.log(this.props)
 		return (
 			<div>
 				<Header cityName={this.props.userInfo.cityName} />
@@ -21,7 +20,7 @@ class Home extends Component {
 	}
 
 	componentDidMount() {
-		console.log(this.props.userInfo)
+		// console.log(this.props.userInfo)
 	}
 }
 

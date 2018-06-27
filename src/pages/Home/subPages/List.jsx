@@ -17,7 +17,6 @@ class List extends Component {
     }
 
 	render() {
-		console.log(this.state.data)
 		return (
 			<div className="home-list">
 				<div className="title">猜你喜欢</div>
@@ -35,7 +34,7 @@ class List extends Component {
 					?
 					<LoadMore isLoadingMore={this.state.isLoadingMore} loadMoreFn={this.loadData.bind(this)}/>
 					:
-					<div>''</div>
+					<div></div>
 				}
 			</div>
 		)
@@ -55,8 +54,6 @@ class List extends Component {
 		result.then(res => {
 			return res.json();
 		}).then(jsonData => {
-			console.log("---------------")
-			console.log(jsonData)
 			this.setState({
 				data: this.state.data.concat(jsonData.data),
 				hasMore: jsonData.hasMore,
