@@ -6,6 +6,7 @@ import * as userInfoActionsFromOtherFile from '../../redux/actions/userInfo'
 import LocalStore from "../../util/localStore"
 import Home from "../Home"
 import City from "../City"
+import Detail from "../Detail"
 import {CITYNAME} from "../../config/localStorageKey"
 class Root extends Component {
 	render() {
@@ -13,7 +14,7 @@ class Root extends Component {
 			<div>
                 <Route path="/home" component={Home}></Route>
 				<Route path="/city" component={City}></Route>
-
+                <Route path="/detail/:id" component={Detail}></Route>
 			</div>
 		)
 	}
