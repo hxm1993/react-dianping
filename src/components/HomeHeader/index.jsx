@@ -1,8 +1,12 @@
 import React, {Component} from "react";
 import { Link } from 'react-router-dom'
+import SearchInput from "../SearchInput";
 require("./index.less")
 
 class Header extends Component {
+	constructor(props, context) {
+		super(props, context);
+	}
 	render() {
 		return(
 			<div className="header clear-fix">
@@ -10,15 +14,18 @@ class Header extends Component {
 				<Link to="/city" className="header_left">
 					<div>{this.props.cityName}<i className="icon-angle-down"></i>  </div>
 				</Link>
-				<div className="header_middle">
-					<input type="search"/>
-					<i className="icon-search"></i>
-				</div>
+				<SearchInput value="asd" enterHandle={this.enterHandle.bind(this)}/>
 				<div className="header_right">
 					<i className="icon-user"></i>
 				</div>
 			</div>
 		)
+	}
+
+	enterHandle(value) {
+		console.log(this)
+				// this.props.jumpPage()
+		 this.props.history.push('/search/all/'+value)
 	}
 }
 

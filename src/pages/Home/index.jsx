@@ -11,7 +11,7 @@ class Home extends Component {
 	render() {
 		return (
 			<div>
-				<Header cityName={this.props.userInfo.cityName} />
+				<Header cityName={this.props.userInfo.cityName} history={this.props.history}/>
 				<Category />
 				<Ad />
 				<List cityName={this.props.userInfo.cityName}/>
@@ -21,6 +21,13 @@ class Home extends Component {
 
 	componentDidMount() {
 		// console.log(this.props.userInfo)
+		console.log(this)
+	}
+
+	jumpPage() {
+		console.log("--------------------")
+		console.log(this)
+
 	}
 }
 

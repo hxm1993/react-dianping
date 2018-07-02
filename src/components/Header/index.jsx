@@ -12,6 +12,12 @@ class Header extends Component {
 	returnHandle() {
 		window.history.back();
 	}
+
+	componentDidMount() {
+		console.log("//////////////////////")
+		console.log(this)
+
+	}
 }
 
 export default Header;
