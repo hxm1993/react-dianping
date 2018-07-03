@@ -23,12 +23,12 @@ class SearchInput extends Component {
 			
 		)
 	}
-	
-	componentDidMount() {
+	componentWillReceiveProps(nextProps) {
 		this.setState({
-			value: this.props.value
+			value: nextProps.value
 		})
 	}
+
 
 	changeHandle(e) {
 		this.setState({
