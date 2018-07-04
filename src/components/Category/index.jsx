@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import ReactSwipe from 'react-swipe';
+import { Link } from 'react-router-dom';
 require("./index.less")
 
 class Category extends Component {
@@ -27,7 +28,7 @@ class Category extends Component {
 				<div className="category_item">
 					<ReactSwipe className="carousel" swipeOptions={opt}>
 		                <ul className="clear-fix">
-							<li className="float-left jingdian">景点</li>
+								<Link to="/search/景点" ><li className="float-left jingdian">景点</li></Link>
 	                            <li className="float-left ktv">KTV</li>
 	                            <li className="float-left gouwu">购物</li>
 	                            <li className="float-left shenghuofuwu">生活服务</li>

@@ -12,7 +12,7 @@ class City extends Component {
 		console.log(this.props.userinfo)
 		return(
 			<div className="city">
-				<Header />
+				<Header title="选择城市"/>
 				<div className="city-content">
 					<div className="current-city">
 						{this.props.userinfo.cityName}

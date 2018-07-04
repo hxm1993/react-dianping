@@ -24,8 +24,13 @@ class Search extends Component {
 		)
 	}
 	componentDidMount() {
+		let keyword = this.props.match.params.keyword;
+		let value = keyword;
+		if(!keyword) {
+			value = this.props.match.params.category
+		}
 		this.setState({
-			value: this.props.match.params.keyword
+			value: value
 		})
 	}
 }

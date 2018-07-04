@@ -1,36 +1,42 @@
 .list-item {
-	display: flex;
+	
 	padding: 0.3rem 0.3rem;
-	.item-img-container {
-		flex: 4;
-		img {
-			width: 100%;
-		}
-	}
-	.item-content {
-		flex: 7;
-		padding-left: 0.2rem;
-		.item-title-container {
-			font-size: 0.4rem;
-			h3{
-				font-weight: normal;
+	a {
+		color: #000;
+		display: flex;
+		text-decoration: none;
+		.item-img-container {
+			flex: 4;
+			img {
+				width: 100%;
 			}
-			span {
+		}
+		.item-content {
+			flex: 7;
+			padding-left: 0.2rem;
+			.item-title-container {
+				font-size: 0.4rem;
+				h3{
+					font-weight: normal;
+				}
+				span {
+					font-size: 0.3rem;
+					line-height: 0.7rem;
+				}
+			}
+			.item-sub-title {
 				font-size: 0.3rem;
-				line-height: 0.7rem;
+				color: #999;
+				line-height: 0.5rem;
 			}
-		}
-		.item-sub-title {
-			font-size: 0.3rem;
-			color: #999;
-			line-height: 0.5rem;
-		}
-		.item-price-container {
-			font-size: 0.4rem;
-			line-height: 0.7rem;
-			.price {
-				color: red;
+			.item-price-container {
+				font-size: 0.4rem;
+				line-height: 0.7rem;
+				.price {
+					color: red;
+				}
 			}
 		}
 	}
+	
 }

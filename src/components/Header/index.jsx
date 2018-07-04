@@ -5,7 +5,7 @@ class Header extends Component {
 		return(
 			<div className="myHeader">
 				<i className="icon icon-chevron-left float-left" onClick={this.returnHandle.bind(this)}></i>
-				<div className="title">选择城市</div>
+				<div className="title">{this.props.title}</div>
 			</div>
 		)
 	}

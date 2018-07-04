@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import SearchInput from "../SearchInput";
 require("./index.less")
 
@@ -16,7 +16,10 @@ class Header extends Component {
 				</Link>
 				<SearchInput value="asd" enterHandle={this.enterHandle.bind(this)}/>
 				<div className="header_right">
-					<i className="icon-user"></i>
+					<Link to="/login" className="header_left">
+						<div><i className="icon-user"></i></div>
+					</Link>
+					
 				</div>
 			</div>
 		)
