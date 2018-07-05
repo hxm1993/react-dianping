@@ -15,6 +15,21 @@ router.get('/hello/:name', async (ctx, next) => {
     var name = ctx.params.name;
     ctx.response.body = `<h1>Hello, ${name}!</h1>`;
 });
+//商品详细信息
+// router.get("api/detail/:id", async (ctx,next) => {
+//     // console.log('abdc')
+//     // const id = ctx.params.id;
+//     // console.log(id)
+
+//     // for(var i = 0; i < homeListData.length; i++) {
+//     //     if(homeListData[i].id === id) {
+//     //         ctx.response.body = homeListData[i];
+//     //         return;
+//     //     }
+//     // }
+//     var name = ctx.params.id;
+//     ctx.response.body = `<h1>Hello, ${id}!</h1>`;
+// })
 
 router.get('/', async (ctx, next) => {
     ctx.response.body = '<h1>Index</h1>';
@@ -38,6 +53,17 @@ router.get('/api/homelist/:city/:page', async (ctx, next) => {
 
      ctx.response.body = homeListData;
 });
+router.get('/api/detail/:id', async (ctx, next) => {
+        const id = ctx.params.id;
+        const data = homeListData.data;
+        for(var i = 0; i < data.length; i++) {
+            if(data[i].id === id) {
+                ctx.response.body = data[i];
+                break;
+            }
+        }
+});
+
 app.use(router.routes());
 // 在端口3000监听:
 app.listen(3000);
