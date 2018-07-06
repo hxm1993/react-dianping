@@ -53,16 +53,25 @@ router.get('/api/homelist/:city/:page', async (ctx, next) => {
 
      ctx.response.body = homeListData;
 });
+var detail = require('./detail/info.js')
 router.get('/api/detail/:id', async (ctx, next) => {
         const id = ctx.params.id;
-        const data = homeListData.data;
-        for(var i = 0; i < data.length; i++) {
-            if(data[i].id === id) {
-                ctx.response.body = data[i];
-                break;
-            }
-        }
+        // for(var i = 0; i < data.length; i++) {
+        //     if(data[i].id === id) {
+        //         ctx.response.body = data[i];
+        //         break;
+        //     }
+        // }
+        ctx.response.body = detail;
 });
+
+var comment = require('./detail/comment.js')
+router.get('/api/detail/comment/:id', async (ctx, next) => {
+        const id = ctx.params.id;
+
+        ctx.response.body = comment;
+});
+
 
 app.use(router.routes());
 // 在端口3000监听:
