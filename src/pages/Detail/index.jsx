@@ -9,8 +9,10 @@ class Detail extends Component {
         super(props, context);
         // this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
         this.state = {
+        	id: "",
             data: null,
-            comment: null
+            comment: [],
+            hasMore: false
         }
     }
 
@@ -24,10 +26,14 @@ class Detail extends Component {
 					?
 					<div>
 						<DetailInfo data={this.state.data}/>
-						<List comment={this.state.comment}/>
+						<List 
+							hasMore={this.state.hasMore}
+							comment={this.state.comment} 
+							loadMoreFn = {this.loadMoreFn.bind(this)}
+						/>
 					</div>
 					:
-					<div>加载中</div>
+					<div>加载中...</div>
 				}
 			</div>
 		)
@@ -36,8 +42,17 @@ class Detail extends Component {
 	componentDidMount() {
 		//传递过来的id
 		let id = this.props.match.params.id;
+		this.setState({
+			id: id
+		})
 		console.log(this.props.match.params.id)
 
+		this.loadInfo(id);
+
+		this.loadComment(id);
+	}
+
+	loadInfo(id) {
 		let result = fetch.getDetail(id);
 		result.then(res => {
 			return res.json()
@@ -47,15 +62,22 @@ class Detail extends Component {
 			})
 		})	
 		console.log(fetch.getDetail(id))
+	}
 
+	loadComment(id) {
 		let comment = fetch.getComment(id);
 		comment.then(res=> {
 			return res.json();
 		}).then(jsonData => {
 			this.setState({
-				comment: jsonData
+				comment: this.state.comment.concat(jsonData.data),
+				hasMore: jsonData.hasMore
 			})
 		})
+	}
+
+	loadMoreFn() {
+		this.loadComment(this.state.id)
 	}
 }
 
