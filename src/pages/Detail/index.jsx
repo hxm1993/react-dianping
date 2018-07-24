@@ -1,8 +1,12 @@
 import React, {Component} from "react";
 import Header from "../../components/Header";
 import * as fetch from "../../fetch/detail";
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import * as userInfoActionsFromOtherFile from '../../redux/actions/userInfo' 
 import DetailInfo from "./subPages/DetailInfo";
 import List from "./subPages/List"
+import Operation from "./subPages/Operation"
 require("./index.less")
 class Detail extends Component {
 	constructor(props, context) {
@@ -26,6 +30,10 @@ class Detail extends Component {
 					?
 					<div>
 						<DetailInfo data={this.state.data}/>
+						<Operation 
+							favoriteHandle = {this.favoriteHandle.bind(this)}
+							buyHandle = {this.buyHandle.bind(this)}
+						/>
 						<List 
 							hasMore={this.state.hasMore}
 							comment={this.state.comment} 
@@ -79,6 +87,47 @@ class Detail extends Component {
 	loadMoreFn() {
 		this.loadComment(this.state.id)
 	}
+
+	//判断是否登录了
+	isLogin() {
+		if(!this.props.userInfo.username) {
+			return false;
+		}
+		return true;
+	}
+
+	//收藏功能
+	favoriteHandle() {
+		// alert(this.isLogin())
+		if(!this.isLogin()) {
+			this.props.history.push("/login/"+encodeURIComponent('detail/' + this.state.id))
+			return false;
+		}
+		//实现收藏功能
+		alert("收藏啦")
+	}
+
+	buyHandle() {
+		if(!this.isLogin()) {
+			this.props.history.push("/login/"+encodeURIComponent('detail/' + this.state.id))
+			return false;
+		}
+		alert("购买啦")
+	}
 }
 
-export default Detail;
+
+function mapStateToProps(state) {
+    return {
+    	userInfo: state.userinfo
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+    }
+}
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Detail)

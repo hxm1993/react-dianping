@@ -22,9 +22,10 @@ class Login extends Component {
 		userInfoActions.update(userInfo);
 
 		//跳转到指定页面
-		let goto = this.props.match.params.goto;
+
+		let goto = decodeURIComponent(this.props.match.params.goto);
 		if(goto) {
-			this.props.history.push("/"+goto)
+			this.props.history.push("/" + goto)
 		}else {
 			this.props.history.push("/home")
 		}
