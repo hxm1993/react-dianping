@@ -1,6 +1,10 @@
 import React, {Component} from "react";
 require("./index.less")
 class Header extends Component {
+	constructor(props, context) {
+        super(props, context);
+        // this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+    }
 	render() {
 		return(
 			<div className="myHeader">
@@ -10,11 +14,14 @@ class Header extends Component {
 		)
 	}
 	returnHandle() {
-		window.history.back();
+		if(this.props.formAddress) {
+			this.props.history.push("/home")
+		}else {
+			window.history.back();
+		}
 	}
 
 	componentDidMount() {
-		console.log("//////////////////////")
 		console.log(this)
 
 	}

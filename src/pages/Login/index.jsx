@@ -23,20 +23,20 @@ class Login extends Component {
 
 		//跳转到指定页面
 
-		let goto = decodeURIComponent(this.props.match.params.goto);
+		let goto = this.props.match.params.goto ? decodeURIComponent(this.props.match.params.goto) : null;
 		if(goto) {
 			this.props.history.push("/" + goto)
 		}else {
-			this.props.history.push("/home")
+			this.props.history.push("/user?from=login")
 		}
 
 	}
 
 	componentDidMount() {
 		//如果用户名存在，则跳转到用户中心页面
-		if(this.props.userInfo) {
+		if(this.props.userInfo.username) {
 			//跳转到用户中心页面
-			this.props.history.replace()
+			this.props.history.replace("/user")
 		}
 	}
 }
@@ -44,7 +44,7 @@ class Login extends Component {
 // -------------------redux react 绑定--------------------
 
 function mapStateToProps(state) {
-	console.log(state)
+	console.log("user",state)
     return {
     	userInfo: state.userinfo
     }

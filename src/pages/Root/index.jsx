@@ -9,6 +9,7 @@ import City from "../City"
 import Detail from "../Detail"
 import Search from "../Search"
 import Login from "../Login"
+import User from "../User"
 import {CITYNAME} from "../../config/localStorageKey"
 class Root extends Component {
 	render() {
@@ -19,6 +20,7 @@ class Root extends Component {
                 <Route path="/detail/:id" component={Detail}></Route>
                 <Route path="/search/:category/:keyword?" component={Search}></Route>
                 <Route path="/login/:goto?" component={Login}></Route>
+                <Route path="/user" component={User}></Route>
 			</div>
 		)
 	}

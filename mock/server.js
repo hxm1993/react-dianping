@@ -31,6 +31,12 @@ router.get('/hello/:name', async (ctx, next) => {
 //     ctx.response.body = `<h1>Hello, ${id}!</h1>`;
 // })
 
+var orderList = require('./orderlist/orderList.js')
+router.get('/api/orderList', async (ctx, next) => {
+
+        console.log("server111111111", orderList)
+        ctx.response.body = orderList;
+});
 router.get('/', async (ctx, next) => {
     ctx.response.body = '<h1>Index</h1>';
 });

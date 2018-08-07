@@ -3,7 +3,7 @@ import Header from "../../components/Header";
 import * as fetch from "../../fetch/detail";
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import * as userInfoActionsFromOtherFile from '../../redux/actions/userInfo' 
+import * as storeActionsFromOtherFile from '../../redux/actions/store' 
 import DetailInfo from "./subPages/DetailInfo";
 import List from "./subPages/List"
 import Operation from "./subPages/Operation"
@@ -12,16 +12,18 @@ class Detail extends Component {
 	constructor(props, context) {
         super(props, context);
         // this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+
         this.state = {
         	id: "",
             data: null,
             comment: [],
-            hasMore: false
+            hasMore: false,
+            isFavorite: false
         }
     }
 
 	render() {
-		console.log(this.state.comment)
+		console.log(123, this.props.store)
 		return (
 			<div>
 				<Header title="商品详情" />
@@ -31,6 +33,8 @@ class Detail extends Component {
 					<div>
 						<DetailInfo data={this.state.data}/>
 						<Operation 
+							id = {this.state.id}
+							isFavorite = {this.state.isFavorite}
 							favoriteHandle = {this.favoriteHandle.bind(this)}
 							buyHandle = {this.buyHandle.bind(this)}
 						/>
@@ -58,6 +62,14 @@ class Detail extends Component {
 		this.loadInfo(id);
 
 		this.loadComment(id);
+
+		let resultArr = this.props.store.length && this.props.store.filter(item => {
+        	return item.id === this.state.id;
+        })
+        this.setState({
+			isFavorite: resultArr && resultArr.length ? true : false
+		})
+        
 	}
 
 	loadInfo(id) {
@@ -97,14 +109,25 @@ class Detail extends Component {
 	}
 
 	//收藏功能
-	favoriteHandle() {
-		// alert(this.isLogin())
+	favoriteHandle(flag) {
 		if(!this.isLogin()) {
 			this.props.history.push("/login/"+encodeURIComponent('detail/' + this.state.id))
 			return false;
 		}
-		//实现收藏功能
-		alert("收藏啦")
+		
+		if(flag === "add") {
+			//实现收藏功能
+			this.props.userInfoActions.add({id:this.state.id});
+			this.setState({
+				isFavorite: true
+			})
+		}else {
+			//实现取消收藏功能
+			this.props.userInfoActions.remove({id:this.state.id});
+			this.setState({
+				isFavorite: false
+			})
+		}
 	}
 
 	buyHandle() {
@@ -118,13 +141,16 @@ class Detail extends Component {
 
 
 function mapStateToProps(state) {
+	console.log(2222, state)
     return {
-    	userInfo: state.userinfo
+    	userInfo: state.userinfo,
+    	store: state.store
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
+    	userInfoActions: bindActionCreators(storeActionsFromOtherFile, dispatch),
     }
 }
 export default connect(
