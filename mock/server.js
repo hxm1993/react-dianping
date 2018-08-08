@@ -77,7 +77,17 @@ router.get('/api/detail/comment/:id', async (ctx, next) => {
 
         ctx.response.body = comment;
 });
+// 提交评论
+router.get('/api/submitComment', async (ctx, next) => {
+    console.log('提交评论')
 
+    // 获取参数
+
+    ctx.response.body  = {
+        errno: 0,
+        msg: 'ok'
+    }
+})
 
 app.use(router.routes());
 // 在端口3000监听:

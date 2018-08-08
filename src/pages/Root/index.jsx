@@ -15,6 +15,7 @@ class Root extends Component {
 	render() {
 		return(
 			<div>
+                <Route path="/" component={Home} exact />
                 <Route path="/home" component={Home}></Route>
 				<Route path="/city" component={City}></Route>
                 <Route path="/detail/:id" component={Detail}></Route>
